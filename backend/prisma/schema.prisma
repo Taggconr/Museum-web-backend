@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+  module   = "commonjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Users {
+  id       String @id
+  fullname String
+  login    String @unique
+  password String
+}
