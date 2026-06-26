@@ -6,7 +6,7 @@ import { PrismaClient } from "@prisma/client";
 export class PrismaService extends PrismaClient {
     constructor() {
         const adapter = new PrismaNeon({
-            connectionString: process.env.DATABASE_URL!,
+            connectionString: process.env.DIRECT_URL!,
         });
         super({ adapter });
     }
