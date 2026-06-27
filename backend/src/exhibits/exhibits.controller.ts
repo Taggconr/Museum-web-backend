@@ -1,10 +1,10 @@
 import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post, UploadedFile, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
 import { ExhibitsService } from './exhibits.service';
-import { ExhibitsDto } from 'src/dto/exhibits.dto';
+import { ExhibitsDto } from '../dto/exhibits.dto';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { count } from 'console';
 import { Multer } from 'multer';
-import { ExhibitsUpdateDto } from 'src/dto/exhibits.update.dto';
+import { ExhibitsUpdateDto } from '../dto/exhibits.update.dto';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('exhibits')

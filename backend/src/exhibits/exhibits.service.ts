@@ -2,9 +2,9 @@ import { randomUUID } from 'crypto';
 import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { put } from '@vercel/blob';
 import { Image } from '@prisma/client';
-import { ExhibitsDto } from 'src/dto/exhibits.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { ExhibitsUpdateDto } from 'src/dto/exhibits.update.dto';
+import { ExhibitsDto } from '../dto/exhibits.dto';
+import { PrismaService } from '../prisma/prisma.service';
+import { ExhibitsUpdateDto } from '../dto/exhibits.update.dto';
 import { title } from 'process';
 
 @Injectable()
