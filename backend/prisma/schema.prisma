@@ -13,3 +13,18 @@ model Users {
   login    String @unique
   password String
 }
+
+model Exhibit {
+  id       String  @id @default(uuid())
+  category String
+  images   Image[]
+  title    String
+  subtitle String
+}
+
+model Image {
+  id        String   @id @default(uuid())
+  image     String
+  exhibit   Exhibit? @relation(fields: [exhibitId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  exhibitId String?
+}

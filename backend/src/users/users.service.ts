@@ -20,6 +20,10 @@ export class UsersService {
         });
     }
 
+    async findAll() {
+        return this.prisma.users.findMany();
+    }
+
     async create(dto: userDto) {
 
         const hashedPassword = await this.bcryptService.hash(dto.password);
@@ -32,4 +36,10 @@ export class UsersService {
             },
         });
     }
+
+    async delete(id: string) {
+        return this.prisma.users.delete({ where: { id: id } })
+    }
+
+
 }
