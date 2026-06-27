@@ -7,11 +7,13 @@ import { userDto } from 'src/dto/users.dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get(':login')
   async findOne(@Param('login') login: string) {
     return this.usersService.findOne(login);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Post()
   async create(@Body() dto: userDto) {
     return this.usersService.create(dto);
