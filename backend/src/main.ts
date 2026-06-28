@@ -8,7 +8,8 @@ async function bootstrap() {
     const configService = app.get(ConfigService);
     app.use(cookieParser());
     app.enableCors({
-        origin: true, // адрес фронта
+        //origin: configService.get('CORS_ORIGIN'), // адрес фронта
+        origin: true,
         //origin: 'http://localhost:3000',
         credentials: true,
     });
