@@ -26,6 +26,7 @@ export class AuthController {
       secure: true,
       sameSite: 'none',
       maxAge: maxAgeMs,
+      path: '/',
     });
     return { message: 'Вход выполнен успешно' };
   }
@@ -38,6 +39,7 @@ export class AuthController {
       //secure: process.env.NODE_ENV === 'production',
       secure: true,
       sameSite: 'none',
+      path: '/',
 
     });
     return { message: 'Выход выполнен' };
