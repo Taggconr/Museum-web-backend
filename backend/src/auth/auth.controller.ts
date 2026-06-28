@@ -23,8 +23,8 @@ export class AuthController {
     // Кука для бэкенд-домена (остаётся)
     res.cookie('access_token', token.access_token, {
       httpOnly: true,
-      secure: true, // или process.env.NODE_ENV === 'production'
-      sameSite: 'none',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
       maxAge: maxAgeMs,
       path: '/',
     });
@@ -41,9 +41,8 @@ export class AuthController {
   async logout(@Res({ passthrough: true }) res: Response) {
     res.clearCookie('access_token', {
       httpOnly: true,
-      //secure: process.env.NODE_ENV === 'production',
-      secure: true,
-      sameSite: 'none',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
       path: '/',
 
     });
