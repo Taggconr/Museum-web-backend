@@ -20,15 +20,20 @@ export class AuthController {
 
     const accessExpiresIn = this.configService.get<string>('JWT_ACCESS_EXPIRES_IN', '1d');
     const maxAgeMs = ms(accessExpiresIn as any) as unknown as number;
+    // Кука для бэкенд-домена (остаётся)
     res.cookie('access_token', token.access_token, {
       httpOnly: true,
-      //secure: process.env.NODE_ENV === 'production',
-      secure: true,
+      secure: true, // или process.env.NODE_ENV === 'production'
       sameSite: 'none',
       maxAge: maxAgeMs,
       path: '/',
     });
-    return { message: 'Вход выполнен успешно' };
+
+    // Теперь возвращаем токен и в теле ответа
+    return {
+      message: 'Вход выполнен успешно',
+      access_token: token.access_token
+    };
   }
 
   @UseGuards(AuthGuard('jwt'))
