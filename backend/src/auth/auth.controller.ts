@@ -22,7 +22,8 @@ export class AuthController {
     const maxAgeMs = ms(accessExpiresIn as any) as unknown as number;
     res.cookie('access_token', token.access_token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      //secure: process.env.NODE_ENV === 'production',
+      secure: true,
       sameSite: 'none',
       maxAge: maxAgeMs,
     });
@@ -34,7 +35,8 @@ export class AuthController {
   async logout(@Res({ passthrough: true }) res: Response) {
     res.clearCookie('access_token', {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      //secure: process.env.NODE_ENV === 'production',
+      secure: true,
       sameSite: 'none',
 
     });
