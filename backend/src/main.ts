@@ -9,6 +9,7 @@ async function bootstrap() {
   app.use(cookieParser());
   app.enableCors({
     origin: configService.get('CORS_ORIGIN'), // адрес фронта
+    //origin: 'http://localhost:3000',
     credentials: true,
   });
   await app.listen(9000);

@@ -11,13 +11,13 @@ import { AuthGuard } from '@nestjs/passport';
 export class ExhibitsController {
   constructor(private readonly exhibitsService: ExhibitsService) { }
 
-  @UseGuards(AuthGuard('jwt'))
+
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return this.exhibitsService.findOne(id);
   }
 
-  @UseGuards(AuthGuard('jwt'))
+
   @Get()
   async findAll() {
     return this.exhibitsService.findAll();

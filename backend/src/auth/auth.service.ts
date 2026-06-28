@@ -2,12 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
     constructor(
         private prismaService: PrismaService,
         private jwtService: JwtService,
+        private configService: ConfigService,
     ) { }
 
 
@@ -29,6 +31,9 @@ export class AuthService {
     // Генерация JWT
     async login(user: any) {
         const payload = { login: user.login, sub: user.id };
-        return { access_token: this.jwtService.sign(payload) };
+        const expiresIn = this.configService.get<string>('JWT_ACCESS_EXPIRES_IN', '1d');
+        return {
+            access_token: this.jwtService.sign(payload, { expiresIn: expiresIn as any }),
+        };
     }
 }
